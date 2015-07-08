@@ -29,7 +29,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     func addDummyData() {
         NSLog("PRESS")
-        RestApiManager.sharedInstance.getIssues { json in
+        /*RestApiManager.sharedInstance.getIssues { json in
             let results = json
             
             for (index: String, subJson: JSON) in results {
@@ -40,7 +40,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                 })
             }
             NSLog("%d",self.items.count)
-        }
+        }*/
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -60,7 +60,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         //let url = NSURL(string: picURL!)
         //let data = NSData(contentsOfURL: url!)
         
-        cell!.textLabel?.text = issue["name"].string
+        //cell!.textLabel?.text = issue["name"].string
         //cell?.imageView?.image = UIImage(data: data!)
         
         return cell!

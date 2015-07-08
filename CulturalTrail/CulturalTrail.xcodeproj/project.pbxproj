@@ -15,6 +15,9 @@
 		8CE303511B350CB90021E71A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8CE303501B350CB90021E71A /* Images.xcassets */; };
 		8CE303541B350CB90021E71A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8CE303521B350CB90021E71A /* LaunchScreen.xib */; };
 		8CE303601B350CB90021E71A /* CulturalTrailTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CE3035F1B350CB90021E71A /* CulturalTrailTests.swift */; };
+		9D6A27B11B4CDA37004609D8 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D6A27B01B4CDA37004609D8 /* ListViewController.swift */; };
+		9D6A27B31B4CEE9A004609D8 /* CreateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D6A27B21B4CEE9A004609D8 /* CreateViewController.swift */; };
+		9D6A27B51B4CF070004609D8 /* CustomSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D6A27B41B4CF070004609D8 /* CustomSegue.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +43,9 @@
 		8CE303591B350CB90021E71A /* CulturalTrailTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CulturalTrailTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8CE3035E1B350CB90021E71A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8CE3035F1B350CB90021E71A /* CulturalTrailTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CulturalTrailTests.swift; sourceTree = "<group>"; };
+		9D6A27B01B4CDA37004609D8 /* ListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
+		9D6A27B21B4CEE9A004609D8 /* CreateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateViewController.swift; sourceTree = "<group>"; };
+		9D6A27B41B4CF070004609D8 /* CustomSegue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomSegue.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +95,9 @@
 				8CE303501B350CB90021E71A /* Images.xcassets */,
 				8CE303521B350CB90021E71A /* LaunchScreen.xib */,
 				8CE303471B350CB90021E71A /* Supporting Files */,
+				9D6A27B01B4CDA37004609D8 /* ListViewController.swift */,
+				9D6A27B21B4CEE9A004609D8 /* CreateViewController.swift */,
+				9D6A27B41B4CF070004609D8 /* CustomSegue.swift */,
 			);
 			path = CulturalTrail;
 			sourceTree = "<group>";
@@ -220,7 +229,10 @@
 			files = (
 				24C86AB51B435D9A00C72CA1 /* SwiftyJSON.swift in Sources */,
 				8CE3034C1B350CB90021E71A /* ViewController.swift in Sources */,
+				9D6A27B31B4CEE9A004609D8 /* CreateViewController.swift in Sources */,
 				24C86AB71B435DC600C72CA1 /* RestApiManager.swift in Sources */,
+				9D6A27B51B4CF070004609D8 /* CustomSegue.swift in Sources */,
+				9D6A27B11B4CDA37004609D8 /* ListViewController.swift in Sources */,
 				8CE3034A1B350CB90021E71A /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -362,6 +374,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
 				INFOPLIST_FILE = CulturalTrail/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
