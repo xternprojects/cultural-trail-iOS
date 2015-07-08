@@ -14,22 +14,17 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     var items = NSMutableArray()
     
     override func viewWillAppear(animated: Bool) {
-        let frame:CGRect = CGRect(x: 0, y: 100, width: self.view.frame.width, height: self.view.frame.height-100)
+        let frame:CGRect = CGRect(x: 0, y: 50, width: self.view.frame.width, height: self.view.frame.height-100)
         self.tableView = UITableView(frame: frame)
         self.tableView?.dataSource = self
         self.tableView?.delegate = self
+        self.tableView?.rowHeight = 100
         self.view.addSubview(self.tableView!)
         
-        let btn = UIButton(frame: CGRect(x: 0, y: 25, width: self.view.frame.width, height: 50))
-        btn.backgroundColor = UIColor.cyanColor()
-        btn.setTitle("Add new Dummy", forState: UIControlState.Normal)
-        btn.addTarget(self, action: "addDummyData", forControlEvents: UIControlEvents.TouchUpInside)
-        self.view.addSubview(btn)
+        retrieveData();
     }
     
-    func addDummyData() {
-        NSLog("PRESS")
-        /*RestApiManager.sharedInstance.getIssues { json in
+        RestApiManager.sharedInstance.getIssues { json in
             let results = json
             
             for (index: String, subJson: JSON) in results {
@@ -44,7 +39,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.items.count;
+        return self.items.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -53,16 +48,32 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         if cell == nil {
             cell = UITableViewCell(style: UITableViewCellStyle.Value1, reuseIdentifier: "CELL")
         }
+    
         
-        let issue:JSON =  JSON(self.items[indexPath.row])
+        let issue:JSON = JSON(self.items[indexPath.row])
         
         //let picURL = issue["picture"]["medium"].string
         //let url = NSURL(string: picURL!)
         //let data = NSData(contentsOfURL: url!)
         
+<<<<<<< HEAD
         //cell!.textLabel?.text = issue["name"].string
+=======
+        var newLabel = UILabel(frame: CGRectMake(15.0, 15.0, 300.0, 20.0))
+        newLabel.text = issue["name"].string
+        newLabel.tag = 1
+        
+        var newLabel1 = UILabel(frame: CGRectMake(15.0, 45.0, 300.0, 20.0))
+        newLabel1.text = issue["description"].string
+        newLabel1.tag = 1
+    
+        cell!.addSubview(newLabel)
+        cell!.addSubview(newLabel1)
+        
+>>>>>>> 9440b417f275302e4e5cd7220ae59ce4a3f8a824
         //cell?.imageView?.image = UIImage(data: data!)
         
         return cell!
     }
+    
 }
