@@ -24,6 +24,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         retrieveData();
     }
     
+    func retrieveData() {
         RestApiManager.sharedInstance.getIssues { json in
             let results = json
             
@@ -35,7 +36,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                 })
             }
             NSLog("%d",self.items.count)
-        }*/
+        }
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -48,7 +49,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         if cell == nil {
             cell = UITableViewCell(style: UITableViewCellStyle.Value1, reuseIdentifier: "CELL")
         }
-    
+        
         
         let issue:JSON = JSON(self.items[indexPath.row])
         
@@ -56,9 +57,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         //let url = NSURL(string: picURL!)
         //let data = NSData(contentsOfURL: url!)
         
-<<<<<<< HEAD
-        //cell!.textLabel?.text = issue["name"].string
-=======
         var newLabel = UILabel(frame: CGRectMake(15.0, 15.0, 300.0, 20.0))
         newLabel.text = issue["name"].string
         newLabel.tag = 1
@@ -66,11 +64,10 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         var newLabel1 = UILabel(frame: CGRectMake(15.0, 45.0, 300.0, 20.0))
         newLabel1.text = issue["description"].string
         newLabel1.tag = 1
-    
+        
         cell!.addSubview(newLabel)
         cell!.addSubview(newLabel1)
         
->>>>>>> 9440b417f275302e4e5cd7220ae59ce4a3f8a824
         //cell?.imageView?.image = UIImage(data: data!)
         
         return cell!
