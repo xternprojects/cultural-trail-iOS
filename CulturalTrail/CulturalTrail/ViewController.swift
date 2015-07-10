@@ -8,9 +8,9 @@
 
 import UIKit
 
-class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class ViewController: UIViewController, /*UITableViewDataSource,*/ UITableViewDelegate {
     
-    var tableView:UITableView?
+    /*var tableView:UITableView?
     var items = NSMutableArray()
     
     override func viewWillAppear(animated: Bool) {
@@ -25,7 +25,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     func retrieveData() {
-        RestApiManager.sharedInstance.getIssues { json in
+        //RestApiManager.sharedInstance.getIssues { json in
             let results = json
             
             for (index: String, subJson: JSON) in results {
@@ -71,6 +71,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         //cell?.imageView?.image = UIImage(data: data!)
         
         return cell!
-    }
+    }*/
     
 }
