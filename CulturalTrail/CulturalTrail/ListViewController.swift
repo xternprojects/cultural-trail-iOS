@@ -75,4 +75,30 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
         return cell!
     }
     
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
+        // Get Cell Label
+        let indexPath = tableView.indexPathForSelectedRow();
+        let currentCell = tableView.cellForRowAtIndexPath(indexPath!) as UITableViewCell!;
+        
+        issueNameToPass = self.items[indexPath!.row]["name"] as! String
+        issueDescriptionToPass = self.items[indexPath!.row]["description"] as! String
+        performSegueWithIdentifier("showIssueDetail", sender: self)
+        
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?){
+        
+        if (segue.identifier == "showIssueDetail") {
+            
+            // initialize new view controller and cast it as your view controller
+            var viewController = segue.destinationViewController as! IssueDetailViewController
+            // your new view controller should have property that will store passed value
+            viewController.issueName = issueNameToPass
+            viewController.issueDescription = issueDescriptionToPass
+        }
+        
+    }
+
+    
 }
