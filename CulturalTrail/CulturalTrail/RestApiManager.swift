@@ -11,7 +11,7 @@ import Foundation
 typealias ServiceResponse = (JSON, NSError?) -> Void
 
 class RestApiManager: NSObject {
-    /*static let sharedInstance = RestApiManager()
+    static let sharedInstance = RestApiManager()
     
     let baseURL = "http://culturaltrail.herokuapp.com/issues"
     
@@ -32,5 +32,5 @@ class RestApiManager: NSObject {
             onCompletion(json, error)
         })
         task.resume()
-    }*/
+    }
 }

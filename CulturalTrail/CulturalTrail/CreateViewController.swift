@@ -28,6 +28,7 @@ class CreateViewController: UIViewController, UIImagePickerControllerDelegate, U
         navigationBar.topItem?.title = "Create Issue"
         navigationBar.titleTextAttributes = [NSFontAttributeName: UIFont(name: "Helvetica", size: 16)!]
         navigationBar.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.whiteColor()]
+        //Center navigationBar.title
         errorMessage.hidden = true
         issuePriority.tintColor = UIColor.orangeColor()
         //var statusBarStyle: UIStatusBarStyle

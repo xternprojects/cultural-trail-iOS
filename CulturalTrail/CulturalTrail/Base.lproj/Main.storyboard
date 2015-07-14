@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Efn-z7-0Zi">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="jNc-aK-WbF">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -23,10 +23,10 @@
             </objects>
             <point key="canvasLocation" x="440" y="233"/>
         </scene>
-        <!--List View Controller-->
+        <!--Issues-->
         <scene sceneID="nBQ-sR-uBJ">
             <objects>
-                <viewController id="Efn-z7-0Zi" customClass="ListViewController" sceneMemberID="viewController">
+                <viewController id="Efn-z7-0Zi" customClass="ListViewController" customModule="CulturalTrail" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="9mA-US-pgG"/>
                         <viewControllerLayoutGuide type="bottom" id="ohU-wy-IVz"/>
@@ -34,47 +34,27 @@
                     <view key="view" contentMode="scaleToFill" id="aLq-Js-LNF">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="10m-QL-EeZ">
-                                <rect key="frame" x="23" y="79" width="600" height="600"/>
-                                <subviews>
-                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="omv-lu-pii">
-                                        <rect key="frame" x="-81" y="-8" width="600" height="600"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <gestureRecognizers/>
-                                    </view>
-                                </subviews>
-                            </scrollView>
-                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="faz-eC-Mts" customClass="ListViewController">
-                                <rect key="frame" x="16" y="20" width="568" height="44"/>
-                                <items>
-                                    <navigationItem title="Issues" id="y4p-pb-LLY">
-                                        <barButtonItem key="rightBarButtonItem" title="+" id="yWY-V9-eYi">
-                                            <connections>
-                                                <segue destination="Lbo-NJ-9E3" kind="custom" identifier="list_to_create" customClass="CustomSegue" customModule="CulturalTrail" customModuleProvider="target" id="cHO-Bp-8Kp"/>
-                                            </connections>
-                                        </barButtonItem>
-                                    </navigationItem>
-                                </items>
-                            </navigationBar>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="faz-eC-Mts" firstAttribute="leading" secondItem="aLq-Js-LNF" secondAttribute="leadingMargin" id="ZPh-cn-6xO"/>
-                            <constraint firstItem="faz-eC-Mts" firstAttribute="trailing" secondItem="aLq-Js-LNF" secondAttribute="trailingMargin" id="khc-uf-zWI"/>
-                            <constraint firstItem="faz-eC-Mts" firstAttribute="top" secondItem="9mA-US-pgG" secondAttribute="bottom" id="lt2-P3-RJb"/>
-                        </constraints>
                     </view>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" id="cee-j0-Lkp"/>
+                    <navigationItem key="navigationItem" title="Issues" id="cee-j0-Lkp">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="KIt-nd-rKw">
+                            <connections>
+                                <segue destination="Lbo-NJ-9E3" kind="show" identifier="showAddIssueView" id="6vb-ma-Zbb"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <segue destination="w1V-cr-l9J" kind="show" identifier="showIssueDetail" id="ye8-z4-1w6"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pr0-0A-R1Q" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <swipeGestureRecognizer direction="down" id="raK-JQ-TuH"/>
             </objects>
-            <point key="canvasLocation" x="1141" y="233"/>
+            <point key="canvasLocation" x="1953" y="233"/>
         </scene>
-        <!--Create View Controller-->
+        <!--Create Issue-->
         <scene sceneID="f4j-52-Xl2">
             <objects>
                 <viewController id="Lbo-NJ-9E3" customClass="CreateViewController" customModule="CulturalTrail" customModuleProvider="target" sceneMemberID="viewController">
@@ -121,7 +101,6 @@
                                 </state>
                                 <connections>
                                     <action selector="createIssueClicked:" destination="Lbo-NJ-9E3" eventType="touchUpInside" id="QXe-c3-b2j"/>
-                                    <segue destination="Efn-z7-0Zi" kind="show" identifier="issue_created" id="rz0-Pd-MQE"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Error Message" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FqS-pa-h3Y">
@@ -186,13 +165,9 @@
                             <constraint firstItem="NXE-Qn-b4T" firstAttribute="leading" secondItem="x4P-Bx-hZ3" secondAttribute="leading" id="ODx-vo-8eo"/>
                             <constraint firstItem="4dy-a2-7fm" firstAttribute="leading" secondItem="x4P-Bx-hZ3" secondAttribute="trailing" constant="30" id="QHb-mo-xk6"/>
                             <constraint firstAttribute="centerX" secondItem="r3c-Gi-8yg" secondAttribute="centerX" id="RCO-jB-PQG"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="N7j-S6-nzg" secondAttribute="trailing" constant="-16" id="SHy-Qa-4pB"/>
                             <constraint firstItem="r3c-Gi-8yg" firstAttribute="top" secondItem="FqS-pa-h3Y" secondAttribute="bottom" constant="30" id="SWS-dN-uXV"/>
                             <constraint firstItem="SCy-Ms-QWe" firstAttribute="top" secondItem="h8T-sK-YpR" secondAttribute="bottom" constant="20" id="UFX-T9-bDG"/>
-                            <constraint firstItem="N7j-S6-nzg" firstAttribute="top" secondItem="0i6-cc-BjH" secondAttribute="topMargin" id="a6S-Y8-WFx"/>
                             <constraint firstItem="NXE-Qn-b4T" firstAttribute="top" secondItem="SCy-Ms-QWe" secondAttribute="bottom" constant="30" id="aEt-lW-aBa"/>
-                            <constraint firstItem="h8T-sK-YpR" firstAttribute="top" secondItem="N7j-S6-nzg" secondAttribute="bottom" constant="36" id="adT-eX-YQt"/>
-                            <constraint firstItem="N7j-S6-nzg" firstAttribute="leading" secondItem="0i6-cc-BjH" secondAttribute="leadingMargin" constant="-16" id="c4i-H3-612"/>
                             <constraint firstItem="h8T-sK-YpR" firstAttribute="leading" secondItem="0i6-cc-BjH" secondAttribute="leadingMargin" constant="26" id="eBD-uW-cxh"/>
                             <constraint firstItem="EfI-L3-uzk" firstAttribute="top" secondItem="4dy-a2-7fm" secondAttribute="bottom" constant="10" id="fxC-46-vKs"/>
                             <constraint firstItem="EfI-L3-uzk" firstAttribute="leading" secondItem="x4P-Bx-hZ3" secondAttribute="leading" id="hBn-gX-ehF"/>
@@ -213,17 +188,16 @@
                         <outlet property="issueDescription" destination="SCy-Ms-QWe" id="9Ny-ga-LQJ"/>
                         <outlet property="issueName" destination="h8T-sK-YpR" id="spA-pJ-hfx"/>
                         <outlet property="issuePriority" destination="NXE-Qn-b4T" id="THP-Q6-75O"/>
-                        <outlet property="navigationBar" destination="N7j-S6-nzg" id="fFZ-lV-JUk"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="L7C-cm-c5x" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1867" y="233"/>
+            <point key="canvasLocation" x="2700" y="1001"/>
         </scene>
-        <!--View Controller-->
+        <!--Issue Detail View Controller-->
         <scene sceneID="aIT-0k-1Nx">
             <objects>
-                <viewController id="w1V-cr-l9J" sceneMemberID="viewController">
+                <viewController id="w1V-cr-l9J" customClass="IssueDetailViewController" customModule="CulturalTrail" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="NTa-oz-yec"/>
                         <viewControllerLayoutGuide type="bottom" id="i88-lo-UJg"/>
@@ -231,11 +205,48 @@
                     <view key="view" contentMode="scaleToFill" id="o4h-iX-NZV">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Issue Name" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XrV-9d-TD5">
+                                <rect key="frame" x="30" y="105" width="521" height="65"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Issue Description" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B59-Zl-2q2">
+                                <rect key="frame" x="30" y="208" width="521" height="124"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <outlet property="issueDescriptionLabel" destination="B59-Zl-2q2" id="deh-VE-UG4"/>
+                        <outlet property="issueNameLabel" destination="XrV-9d-TD5" id="W2y-ju-mKZ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4ZL-RX-S18" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="2758" y="233"/>
+        </scene>
+        <!--Navigation Base Controller-->
+        <scene sceneID="LsE-6k-Gnd">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="jNc-aK-WbF" customClass="NavigationBaseController" customModule="CulturalTrail" customModuleProvider="target" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="d2S-yZ-ENO">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Efn-z7-0Zi" kind="relationship" relationship="rootViewController" id="c0W-Wi-yV0"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jVH-M3-9iw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1141" y="233"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
