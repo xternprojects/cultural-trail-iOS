@@ -98,12 +98,12 @@ public struct JSON {
         set {
             _object = newValue
             switch newValue {
-            /*case let number as NSNumber:
+            case let number as NSNumber:
                 if number.isBool {
                     _type = .Bool
                 } else {
                     _type = .Number
-                }*/ //UNCOMMENT
+                }
             case let string as NSString:
                 _type = .String
             case let null as NSNull:
@@ -130,7 +130,7 @@ public struct JSON {
     public static var nullJSON: JSON { get { return JSON(NSNull()) } }
 
 }
-/*
+
 // MARK: - SequenceType
 extension JSON: SequenceType{
     
@@ -1333,4 +1333,3 @@ extension JSON {
         }
     }
 }
-*/

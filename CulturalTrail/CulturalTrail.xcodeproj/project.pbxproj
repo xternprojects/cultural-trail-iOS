@@ -10,7 +10,6 @@
 		24C86AB51B435D9A00C72CA1 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C86AB41B435D9A00C72CA1 /* SwiftyJSON.swift */; };
 		24C86AB71B435DC600C72CA1 /* RestApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C86AB61B435DC600C72CA1 /* RestApiManager.swift */; };
 		8CE3034A1B350CB90021E71A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CE303491B350CB90021E71A /* AppDelegate.swift */; };
-		8CE3034C1B350CB90021E71A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CE3034B1B350CB90021E71A /* ViewController.swift */; };
 		8CE3034F1B350CB90021E71A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8CE3034D1B350CB90021E71A /* Main.storyboard */; };
 		8CE303511B350CB90021E71A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8CE303501B350CB90021E71A /* Images.xcassets */; };
 		8CE303541B350CB90021E71A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8CE303521B350CB90021E71A /* LaunchScreen.xib */; };
@@ -36,7 +35,6 @@
 		8CE303441B350CB90021E71A /* CulturalTrail.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CulturalTrail.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8CE303481B350CB90021E71A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8CE303491B350CB90021E71A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		8CE3034B1B350CB90021E71A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		8CE3034E1B350CB90021E71A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		8CE303501B350CB90021E71A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		8CE303531B350CB90021E71A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -88,7 +86,6 @@
 			isa = PBXGroup;
 			children = (
 				8CE303491B350CB90021E71A /* AppDelegate.swift */,
-				8CE3034B1B350CB90021E71A /* ViewController.swift */,
 				24C86AB41B435D9A00C72CA1 /* SwiftyJSON.swift */,
 				8CE3034D1B350CB90021E71A /* Main.storyboard */,
 				24C86AB61B435DC600C72CA1 /* RestApiManager.swift */,
@@ -228,7 +225,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				24C86AB51B435D9A00C72CA1 /* SwiftyJSON.swift in Sources */,
-				8CE3034C1B350CB90021E71A /* ViewController.swift in Sources */,
 				9D6A27B31B4CEE9A004609D8 /* CreateViewController.swift in Sources */,
 				24C86AB71B435DC600C72CA1 /* RestApiManager.swift in Sources */,
 				9D6A27B51B4CF070004609D8 /* CustomSegue.swift in Sources */,
