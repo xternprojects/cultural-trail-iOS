@@ -23,11 +23,6 @@ class CreateViewController: UIViewController, UIImagePickerControllerDelegate, U
     var images = [UIImage]()
     
     override func viewDidLoad() {
-        navigationBar.barTintColor = UIColor(red: 2/225, green: 86/225, blue: 138/225, alpha: 1.0)
-        navigationBar.tintColor = UIColor.whiteColor()
-        navigationBar.topItem?.title = "Create Issue"
-        navigationBar.titleTextAttributes = [NSFontAttributeName: UIFont(name: "Helvetica", size: 16)!]
-        navigationBar.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.whiteColor()]
         //Center navigationBar.title
         errorMessage.hidden = true
         issuePriority.tintColor = UIColor.orangeColor()

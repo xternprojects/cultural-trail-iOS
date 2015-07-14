@@ -16,7 +16,7 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
     var issueDescriptionToPass = String()
     
     override func viewWillAppear(animated: Bool) {
-        let frame:CGRect = CGRect(x: 0, y: 70, width: self.view.frame.width, height: self.view.frame.height-100)
+        let frame:CGRect = CGRect(x: 0, y: 60, width: self.view.frame.width, height: self.view.frame.height-100)
         self.tableView = UITableView(frame: frame)
         self.tableView?.dataSource = self
         self.tableView?.delegate = self
