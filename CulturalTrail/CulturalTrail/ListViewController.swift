@@ -16,12 +16,11 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
     var issueDescriptionToPass = String()
     
     override func viewWillAppear(animated: Bool) {
-        items = NSMutableArray()
         let frame:CGRect = CGRect(x: 0, y: 60, width: self.view.frame.width, height: self.view.frame.height-100)
         self.tableView = UITableView(frame: frame)
         self.tableView?.dataSource = self
         self.tableView?.delegate = self
-        self.tableView?.rowHeight = 360
+        self.tableView?.rowHeight = 100
         self.view.addSubview(self.tableView!)
         
         retrieveData();
@@ -38,7 +37,7 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
                     tableView?.reloadData()
                 })
             }
-            //NSLog("%d",self.items.count)
+            NSLog("%d",self.items.count)
         }
     }
     
@@ -56,44 +55,20 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         let issue:JSON = JSON(self.items[indexPath.row])
         
-        let picURL = issue["picture"].string
-        NSLog("url: %s",picURL!)
-        let url = NSURL(string: picURL!)
-        if(url != nil)
-        {
-            let data = NSData(contentsOfURL: url!)
-            var issueImage = UIImageView(frame: CGRectMake(0.0, 0.0, 300.0, 200.0))
-            issueImage.image = UIImage(data: data!)
-            
-            cell!.addSubview(issueImage)
-            
-            var newLabel = UILabel(frame: CGRectMake(15.0, 215.0, 300.0, 20.0))
-            newLabel.text = issue["name"].string
-            newLabel.tag = 1
-            
-            var newLabel1 = UILabel(frame: CGRectMake(15.0, 245.0, 300.0, 20.0))
-            newLabel1.text = issue["description"].string
-            newLabel1.tag = 2
-            
-            cell!.addSubview(newLabel)
-            cell!.addSubview(newLabel1)
-        }
-        else
-        {
-            var newLabel = UILabel(frame: CGRectMake(15.0, 15.0, 300.0, 20.0))
-            newLabel.text = issue["name"].string
-            newLabel.tag = 1
-            
-            var newLabel1 = UILabel(frame: CGRectMake(15.0, 45.0, 300.0, 20.0))
-            newLabel1.text = issue["description"].string
-            newLabel1.tag = 2
-            
-            cell!.addSubview(newLabel)
-            cell!.addSubview(newLabel1)
-
-        }
+        //let picURL = issue["picture"]["medium"].string
+        //let url = NSURL(string: picURL!)
+        //let data = NSData(contentsOfURL: url!)
         
+        var newLabel = UILabel(frame: CGRectMake(15.0, 15.0, 300.0, 20.0))
+        newLabel.text = issue["name"].string
+        newLabel.tag = 1
         
+        var newLabel1 = UILabel(frame: CGRectMake(15.0, 45.0, 300.0, 20.0))
+        newLabel1.text = issue["description"].string
+        newLabel1.tag = 1
+        
+        cell!.addSubview(newLabel)
+        cell!.addSubview(newLabel1)
         
         //cell?.imageView?.image = UIImage(data: data!)
         
