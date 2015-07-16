@@ -22,6 +22,7 @@ class RestApiManager: NSObject {
         })
     }
     
+    
     func makeHTTPGetRequest(path: String, onCompletion: ServiceResponse) {
         let request = NSMutableURLRequest(URL: NSURL(string: path)!)
         
@@ -33,4 +34,7 @@ class RestApiManager: NSObject {
         })
         task.resume()
     }
+    
+    
+    
 }

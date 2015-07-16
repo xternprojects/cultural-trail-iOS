@@ -1,31 +1,43 @@
-//
-//  ListViewController.swift
-//  CulturalTrail
-//
-//  Created by Manasi Goel on 7/8/15.
-//  Copyright (c) 2015 Indy Cultural Trail. All rights reserved.
-//
-
 import UIKit
+
+class CustomTableViewCell : UITableViewCell {
+    @IBOutlet var issueImage: UIImageView?
+    @IBOutlet var issueTitle: UILabel?
+    @IBOutlet var issueDescription: UILabel?
+    @IBOutlet var issueLocation: UILabel?
+    
+    func loadItem(#title: String, description: String, location: String) {
+        issueTitle!.text = title
+        issueDescription!.text = description
+        issueLocation!.text = location
+        
+    }
+    func loadItemWithImage(#title: String, description: String, image: UIImage, location: String) {
+        issueTitle!.text = title
+        issueDescription!.text = description
+        issueImage!.image = image
+        issueLocation!.text = location
+
+    }
+}
 
 class ListViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
-    var tableView:UITableView?
+    @IBOutlet var tableView: UITableView!
     var items = NSMutableArray()
+    var imageArray = NSMutableArray()
     var issueNameToPass = String()
     var issueDescriptionToPass = String()
     
-    override func viewWillAppear(animated: Bool) {
-        let frame:CGRect = CGRect(x: 0, y: 60, width: self.view.frame.width, height: self.view.frame.height-100)
-        self.tableView = UITableView(frame: frame)
-        self.tableView?.dataSource = self
-        self.tableView?.delegate = self
-        self.tableView?.rowHeight = 100
-        self.view.addSubview(self.tableView!)
+    override func viewDidLoad() {
+        retrieveData()
         
-        retrieveData();
+        var nib = UINib(nibName: "CustomTableViewCell", bundle: nil)
+        
+        tableView.registerNib(nib, forCellReuseIdentifier: "customCell")
+        
     }
-    
+
     func retrieveData() {
         RestApiManager.sharedInstance.getIssues { json in
             let results = json
@@ -33,59 +45,83 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
             for (index: String, subJson: JSON) in results {
                 let issue: AnyObject = subJson.object
                 self.items.addObject(issue)
-                dispatch_async(dispatch_get_main_queue(),{
-                    tableView?.reloadData()
-                })
+                
             }
             NSLog("%d",self.items.count)
+            dispatch_async(dispatch_get_main_queue(),{
+                self.tableView?.reloadData()
+                //self.retrieveImages()
+            })
         }
+        //self.retrieveImages()
+        
     }
     
+    func retrieveImages(){
+        
+        for (var x=0; x<self.items.count; x++) {
+            //NSLog("index %@",element.string)
+            //let picURL = self.items[index]["picture"].string
+            //NSLog("url %@", self.items[index].string)
+            var issueImage = UIImageView();
+            let url = NSURL(string: self.items[x]["picture"]!!.string)
+            if(url != nil)
+            {
+                let data = NSData(contentsOfURL: url!) //make sure image in this url does exist, otherwise unwrap
+                issueImage.image = UIImage(data: data!)
+                self.imageArray.addObject(issueImage);
+                NSLog("picture in")
+            }
+            else{
+                self.imageArray.addObject(0)
+            }
+        }
+        
+    }
+    
+    
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.items.count
+            return items.count;
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell = tableView.dequeueReusableCellWithIdentifier("CELL") as? UITableViewCell
-        
-        if cell == nil {
-            cell = UITableViewCell(style: UITableViewCellStyle.Value1, reuseIdentifier: "CELL")
-        }
-        
-        
+        var cell:CustomTableViewCell = self.tableView.dequeueReusableCellWithIdentifier("customCell") as! CustomTableViewCell
         let issue:JSON = JSON(self.items[indexPath.row])
         
-        //let picURL = issue["picture"]["medium"].string
-        //let url = NSURL(string: picURL!)
-        //let data = NSData(contentsOfURL: url!)
+        let picURL = issue["picture"].string
+
+        var issueImage = UIImageView();
+        let url = NSURL(string: picURL!)
+        if(url != nil)
+        {
+            let data = NSData(contentsOfURL: url!) //make sure image in this url does exist, otherwise unwrap
+            issueImage.image = UIImage(data: data!)
+            
+            cell.loadItemWithImage(title: issue["name"].string!, description: issue["description"].string!, image: issueImage.image!, location: issue["description"].string!)
+        }
+        else{
+            cell.loadItem(title: issue["name"].string!, description: issue["description"].string!, location: issue["description"].string!)
+    }
         
-        var newLabel = UILabel(frame: CGRectMake(15.0, 15.0, 300.0, 20.0))
-        newLabel.text = issue["name"].string
-        newLabel.tag = 1
         
-        var newLabel1 = UILabel(frame: CGRectMake(15.0, 45.0, 300.0, 20.0))
-        newLabel1.text = issue["description"].string
-        newLabel1.tag = 1
-        
-        cell!.addSubview(newLabel)
-        cell!.addSubview(newLabel1)
-        
-        //cell?.imageView?.image = UIImage(data: data!)
-        
-        return cell!
+        return cell
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        println("You selected cell #\(indexPath.row)!")
         
         // Get Cell Label
+        /*
         let indexPath = tableView.indexPathForSelectedRow();
         let currentCell = tableView.cellForRowAtIndexPath(indexPath!) as UITableViewCell!;
-        
-        issueNameToPass = self.items[indexPath!.row]["name"] as! String
-        issueDescriptionToPass = self.items[indexPath!.row]["description"] as! String
+        */
+        issueNameToPass = self.items[indexPath.row]["name"] as! String
+        issueDescriptionToPass = self.items[indexPath.row]["description"] as! String
         performSegueWithIdentifier("showIssueDetail", sender: self)
-        
+
     }
+
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?){
         
@@ -99,6 +135,6 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
         }
         
     }
-
+    
     
 }

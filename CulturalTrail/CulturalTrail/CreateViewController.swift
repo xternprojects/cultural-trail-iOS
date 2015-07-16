@@ -23,11 +23,6 @@ class CreateViewController: UIViewController, UIImagePickerControllerDelegate, U
     var images = [UIImage]()
     
     override func viewDidLoad() {
-        navigationBar.barTintColor = UIColor(red: 2/225, green: 86/225, blue: 138/225, alpha: 1.0)
-        navigationBar.tintColor = UIColor.whiteColor()
-        navigationBar.topItem?.title = "Create Issue"
-        navigationBar.titleTextAttributes = [NSFontAttributeName: UIFont(name: "Helvetica", size: 16)!]
-        navigationBar.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.whiteColor()]
         //Center navigationBar.title
         errorMessage.hidden = true
         issuePriority.tintColor = UIColor.orangeColor()
@@ -40,29 +35,29 @@ class CreateViewController: UIViewController, UIImagePickerControllerDelegate, U
     }
     
     @IBAction func changePriority(sender: UISegmentedControl) {
-       switch sender.selectedSegmentIndex {
-       case 0: //low priority
-        issuePriority.tintColor = UIColor.orangeColor()
-       case 1: //high priority
-        issuePriority.tintColor = UIColor.redColor()
-       default:
-        break
+        switch sender.selectedSegmentIndex {
+        case 0: //low priority
+            issuePriority.tintColor = UIColor.orangeColor()
+        case 1: //high priority
+            issuePriority.tintColor = UIColor.redColor()
+        default:
+            break
         }
     }
-
+    
     @IBAction func addImages(sender: AnyObject) {
         let imagePicker = UIImagePickerController()
         imagePicker.delegate = self
-
+        
         if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera){
             imagePicker.sourceType = .Camera
         }else{
             imagePicker.sourceType = .PhotoLibrary
         }
-
+        
         presentViewController(imagePicker, animated: true, completion: nil)
     }
-
+    
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
         var chosenImage = info[UIImagePickerControllerOriginalImage] as! UIImage
@@ -92,9 +87,21 @@ class CreateViewController: UIViewController, UIImagePickerControllerDelegate, U
         }
         return true
     }
+    /*
+    func retrieveData() {
+        RestApiManager.sharedInstance.getIssues { json in
+            let results = json
+            
+            for (index: String, subJson: JSON) in results {
+                let issue: AnyObject = subJson.object
+                self.items.addObject(issue)
+                dispatch_async(dispatch_get_main_queue(),{
+                    tableView?.reloadData()
+                })
+            }
+            //NSLog("%d",self.items.count)
+        }
+    }*/
+
     
 }
-
-
-
-

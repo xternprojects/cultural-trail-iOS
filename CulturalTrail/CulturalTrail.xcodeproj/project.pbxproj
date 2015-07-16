@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		241D4F141B573E5800D4CCB6 /* CustomTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 241D4F131B573E5800D4CCB6 /* CustomTableViewCell.xib */; };
 		24C86AB51B435D9A00C72CA1 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C86AB41B435D9A00C72CA1 /* SwiftyJSON.swift */; };
 		24C86AB71B435DC600C72CA1 /* RestApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C86AB61B435DC600C72CA1 /* RestApiManager.swift */; };
 		24D37F661B54B09B00C9FCD0 /* IssueDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D37F651B54B09B00C9FCD0 /* IssueDetailViewController.swift */; };
@@ -32,6 +33,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		241D4F131B573E5800D4CCB6 /* CustomTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomTableViewCell.xib; sourceTree = "<group>"; };
 		24C86AB41B435D9A00C72CA1 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
 		24C86AB61B435DC600C72CA1 /* RestApiManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestApiManager.swift; sourceTree = "<group>"; };
 		24D37F651B54B09B00C9FCD0 /* IssueDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IssueDetailViewController.swift; sourceTree = "<group>"; };
@@ -101,6 +103,7 @@
 				24D37F651B54B09B00C9FCD0 /* IssueDetailViewController.swift */,
 				9D6A27B21B4CEE9A004609D8 /* CreateViewController.swift */,
 				9D6A27B41B4CF070004609D8 /* CustomSegue.swift */,
+				241D4F131B573E5800D4CCB6 /* CustomTableViewCell.xib */,
 			);
 			path = CulturalTrail;
 			sourceTree = "<group>";
@@ -212,6 +215,7 @@
 			files = (
 				8CE3034F1B350CB90021E71A /* Main.storyboard in Resources */,
 				8CE303541B350CB90021E71A /* LaunchScreen.xib in Resources */,
+				241D4F141B573E5800D4CCB6 /* CustomTableViewCell.xib in Resources */,
 				8CE303511B350CB90021E71A /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
