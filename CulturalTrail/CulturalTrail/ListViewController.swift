@@ -45,7 +45,7 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
             for (index: String, subJson: JSON) in results {
                 let issue: AnyObject = subJson.object
                 self.items.addObject(issue)
-                
+                self.retrieveImage(issue["picture"] as! String)
             }
             NSLog("%d",self.items.count)
             dispatch_async(dispatch_get_main_queue(),{
@@ -54,6 +54,23 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
             })
         }
         //self.retrieveImages()
+        
+    }
+    
+    func retrieveImage(urlString: String){
+        
+            var issueImage = UIImageView();
+            let url = NSURL(string: urlString)
+            if(url != nil)
+            {
+                let data = NSData(contentsOfURL: url!) //make sure image in this url does exist, otherwise unwrap
+                issueImage.image = UIImage(data: data!)
+                self.imageArray.addObject(issueImage);
+                NSLog("picture in")
+            }
+            else{
+                self.imageArray.addObject(0)
+            }
         
     }
     
@@ -73,7 +90,7 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 NSLog("picture in")
             }
             else{
-                self.imageArray.addObject(0)
+                self.imageArray.addObject(issueImage)
             }
         }
         
@@ -94,8 +111,8 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
         let url = NSURL(string: picURL!)
         if(url != nil)
         {
-            let data = NSData(contentsOfURL: url!) //make sure image in this url does exist, otherwise unwrap
-            issueImage.image = UIImage(data: data!)
+        
+            issueImage = self.imageArray[indexPath.row] as! UIImageView
             
             cell.loadItemWithImage(title: issue["name"].string!, description: issue["description"].string!, image: issueImage.image!, location: issue["description"].string!)
         }
