@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Alamofire
 
 class CreateViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
         
@@ -45,6 +46,27 @@ class CreateViewController: UIViewController, UIImagePickerControllerDelegate, U
     
     @IBAction func createIssueClicked(sender: AnyObject) {
         shouldPerformSegueWithIdentifier("issue_created", sender: self)
+        
+        let parameters:[String : AnyObject] = [
+            "name": "Naush POSTed from the app",
+            "description": "It's pretty cool",
+            "reported": "Tickle me ballz",
+            "request": "",
+            "picture": "",
+            "location": [
+                "lng": 30.0,
+                "lat": 30.0
+            ],
+            "priority": 1,
+            "open": true
+        ]
+        
+        Alamofire.request(Alamofire.Method.POST, "http://culturaltrail.herokuapp.com/issues", parameters: parameters, encoding: .JSON)
+            .responseJSON { (_, _, JSON, _) in
+                println(JSON)
+        }
+
+        
     }
     
     @IBAction func titleChanged(sender: AnyObject) {
@@ -114,23 +136,12 @@ class CreateViewController: UIViewController, UIImagePickerControllerDelegate, U
         for image in images{
             println(image)
         }
+        
         return true
     }
-    /*
-    func retrieveData() {
-        RestApiManager.sharedInstance.getIssues { json in
-            let results = json
-            
-            for (index: String, subJson: JSON) in results {
-                let issue: AnyObject = subJson.object
-                self.items.addObject(issue)
-                dispatch_async(dispatch_get_main_queue(),{
-                    tableView?.reloadData()
-                })
-            }
-            //NSLog("%d",self.items.count)
-        }
-    }*/
+    
+    
+
 
     
 }
