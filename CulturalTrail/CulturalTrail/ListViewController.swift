@@ -1,4 +1,6 @@
 import UIKit
+import CoreLocation
+import Alamofire
 
 class CustomTableViewCell : UITableViewCell {
     @IBOutlet var issueImage: UIImageView?
@@ -21,13 +23,16 @@ class CustomTableViewCell : UITableViewCell {
     }
 }
 
-class ListViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class ListViewController: UIViewController, UITableViewDataSource, UITableViewDelegate,  CLLocationManagerDelegate {
     
     @IBOutlet var tableView: UITableView!
-    var items = NSMutableArray()
+    var JSONitems = NSMutableArray()
     var imageArray = NSMutableArray()
+    var locationArray = NSMutableArray()
     var issueNameToPass = String()
     var issueDescriptionToPass = String()
+    
+    let locationManager = CLLocationManager()
     
     override func viewDidLoad() {
         retrieveData()
@@ -44,16 +49,18 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
             
             for (index: String, subJson: JSON) in results {
                 let issue: AnyObject = subJson.object
-                self.items.addObject(issue)
+                self.JSONitems.addObject(issue)
                 self.retrieveImage(issue["picture"] as! String)
             }
-            NSLog("%d",self.items.count)
+            NSLog("%d",self.JSONitems.count)
             dispatch_async(dispatch_get_main_queue(),{
                 self.tableView?.reloadData()
-                //self.retrieveImages()
             })
         }
-        //self.retrieveImages()
+        /*Alamofire.request(.GET, "http://culturaltrail.herokuapp.com/issues?pageSize=100")
+            .responseJSON { (_, _, JSON, _) in
+                println(JSON)
+        }*/
         
     }
     
@@ -69,41 +76,19 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 NSLog("picture in")
             }
             else{
-                self.imageArray.addObject(0)
-            }
-        
-    }
-    
-    func retrieveImages(){
-        
-        for (var x=0; x<self.items.count; x++) {
-            //NSLog("index %@",element.string)
-            //let picURL = self.items[index]["picture"].string
-            //NSLog("url %@", self.items[index].string)
-            var issueImage = UIImageView();
-            let url = NSURL(string: self.items[x]["picture"]!!.string)
-            if(url != nil)
-            {
-                let data = NSData(contentsOfURL: url!) //make sure image in this url does exist, otherwise unwrap
-                issueImage.image = UIImage(data: data!)
-                self.imageArray.addObject(issueImage);
-                NSLog("picture in")
-            }
-            else{
                 self.imageArray.addObject(issueImage)
             }
-        }
         
     }
     
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-            return items.count;
+            return JSONitems.count;
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var cell:CustomTableViewCell = self.tableView.dequeueReusableCellWithIdentifier("customCell") as! CustomTableViewCell
-        let issue:JSON = JSON(self.items[indexPath.row])
+        let issue:JSON = JSON(self.JSONitems[indexPath.row])
         
         let picURL = issue["picture"].string
 
@@ -111,10 +96,10 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
         let url = NSURL(string: picURL!)
         if(url != nil)
         {
-        
+        //findLocation(issue["location"]["lat"].doubleValue, longi: issue["location"]["lng"].doubleValue)
             issueImage = self.imageArray[indexPath.row] as! UIImageView
             
-            cell.loadItemWithImage(title: issue["name"].string!, description: issue["description"].string!, image: issueImage.image!, location: issue["description"].string!)
+            cell.loadItemWithImage(title: issue["name"].string!, description: issue["description"].string!, image: issueImage.image!, location: findLocation(issue["location"]["lat"].doubleValue, longi: issue["location"]["lng"].doubleValue))
         }
         else{
             cell.loadItem(title: issue["name"].string!, description: issue["description"].string!, location: issue["description"].string!)
@@ -133,10 +118,35 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
         let indexPath = tableView.indexPathForSelectedRow();
         let currentCell = tableView.cellForRowAtIndexPath(indexPath!) as UITableViewCell!;
         */
-        issueNameToPass = self.items[indexPath.row]["name"] as! String
-        issueDescriptionToPass = self.items[indexPath.row]["description"] as! String
+        issueNameToPass = self.JSONitems[indexPath.row]["name"] as! String
+        issueDescriptionToPass = self.JSONitems[indexPath.row]["description"] as! String
         performSegueWithIdentifier("showIssueDetail", sender: self)
 
+    }
+    
+    func findLocation(lati: Double, longi: Double) -> String{
+        let location = CLLocation(latitude: lati as CLLocationDegrees, longitude: longi as CLLocationDegrees)
+        let geocoder = CLGeocoder()
+        var locationString = String()
+        geocoder.reverseGeocodeLocation(location, completionHandler: { (placemarks, e) -> Void in
+            if let error = e {
+                println("Error:  \(e.localizedDescription)")
+            } else {
+                let placemark = placemarks.last as! CLPlacemark
+                
+                let userInfo = [
+                    "city":     placemark.locality,
+                    "state":    placemark.administrativeArea,
+                    "country":  placemark.country
+                ]
+                
+                println("Location:  \(userInfo)")
+                
+                locationString = userInfo["city"]!
+            }
+        })
+        
+        return locationString
     }
 
     
