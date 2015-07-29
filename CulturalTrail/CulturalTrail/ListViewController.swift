@@ -31,6 +31,7 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
     var locationArray = NSMutableArray()
     var issueNameToPass = String()
     var issueDescriptionToPass = String()
+    var issueLocation = String()
     
     let locationManager = CLLocationManager()
     
@@ -50,12 +51,24 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
             for (index: String, subJson: JSON) in results {
                 let issue: AnyObject = subJson.object
                 self.JSONitems.addObject(issue)
+                
+                
+                if let location = issue["location"] as? [String: AnyObject] {
+                    if let lat = location["lat"] as? Double {
+                        if let lng = location["lng"] as? Double {
+                            var locationString = self.findLocation(lat, longi: lng)
+                        }
+                    }
+                }
+                
                 self.retrieveImage(issue["picture"] as! String)
+                
+                dispatch_async(dispatch_get_main_queue(),{
+                    self.tableView?.reloadData()
+                })
             }
             NSLog("%d",self.JSONitems.count)
-            dispatch_async(dispatch_get_main_queue(),{
-                self.tableView?.reloadData()
-            })
+            
         }
         /*Alamofire.request(.GET, "http://culturaltrail.herokuapp.com/issues?pageSize=100")
             .responseJSON { (_, _, JSON, _) in
@@ -72,7 +85,7 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
             {
                 let data = NSData(contentsOfURL: url!) //make sure image in this url does exist, otherwise unwrap
                 issueImage.image = UIImage(data: data!)
-                self.imageArray.addObject(issueImage);
+                self.imageArray.addObject(issueImage)
                 NSLog("picture in")
             }
             else{
@@ -80,7 +93,6 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
             }
         
     }
-    
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
             return JSONitems.count;
@@ -99,12 +111,11 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
         //findLocation(issue["location"]["lat"].doubleValue, longi: issue["location"]["lng"].doubleValue)
             issueImage = self.imageArray[indexPath.row] as! UIImageView
             
-            cell.loadItemWithImage(title: issue["name"].string!, description: issue["description"].string!, image: issueImage.image!, location: findLocation(issue["location"]["lat"].doubleValue, longi: issue["location"]["lng"].doubleValue))
+            cell.loadItemWithImage(title: issue["name"].string!, description: issue["description"].string!, image: issueImage.image!, location: "hey")
         }
         else{
-            cell.loadItem(title: issue["name"].string!, description: issue["description"].string!, location: issue["description"].string!)
-    }
-        
+            cell.loadItem(title: issue["name"].string!, description: issue["description"].string!, location: "hey")
+        }
         
         return cell
     }
@@ -120,6 +131,7 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
         */
         issueNameToPass = self.JSONitems[indexPath.row]["name"] as! String
         issueDescriptionToPass = self.JSONitems[indexPath.row]["description"] as! String
+        issueLocation = self.locationArray[indexPath.row] as! String
         performSegueWithIdentifier("showIssueDetail", sender: self)
 
     }
@@ -135,15 +147,17 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 let placemark = placemarks.last as! CLPlacemark
                 
                 let userInfo = [
-                    "city":     placemark.locality,
-                    "state":    placemark.administrativeArea,
-                    "country":  placemark.country
+                    "detail":  placemark.subThoroughfare,
+                    "street":   placemark.thoroughfare
                 ]
                 
-                println("Location:  \(userInfo)")
+                locationString = userInfo["detail"]! + userInfo["street"]!
                 
-                locationString = userInfo["city"]!
+                println("Location:  \(locationString)")
+                println(self.locationArray)
+                
             }
+            self.locationArray.addObject(locationString)
         })
         
         return locationString
@@ -159,6 +173,7 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
             // your new view controller should have property that will store passed value
             viewController.issueName = issueNameToPass
             viewController.issueDescription = issueDescriptionToPass
+            viewController.issueLocation = issueLocation
         }
         
     }

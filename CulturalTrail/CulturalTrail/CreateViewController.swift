@@ -47,26 +47,6 @@ class CreateViewController: UIViewController, UIImagePickerControllerDelegate, U
     @IBAction func createIssueClicked(sender: AnyObject) {
         shouldPerformSegueWithIdentifier("issue_created", sender: self)
         
-        let parameters:[String : AnyObject] = [
-            "name": "Naush POSTed from the app",
-            "description": "It's pretty cool",
-            "reported": "Tickle me",
-            "request": "",
-            "picture": "",
-            "location": [
-                "lng": 30.0,
-                "lat": 30.0
-            ],
-            "priority": 1,
-            "open": true
-        ]
-        
-        Alamofire.request(Alamofire.Method.POST, "http://culturaltrail.herokuapp.com/issues", parameters: parameters, encoding: .JSON)
-            .responseJSON { (_, _, JSON, _) in
-                println(JSON)
-        }
-
-        
     }
     
     @IBAction func titleChanged(sender: AnyObject) {
@@ -126,12 +106,34 @@ class CreateViewController: UIViewController, UIImagePickerControllerDelegate, U
             errorMessage.hidden = false
             return false
         }
-        if(issueDescription.text.isEmpty){
+        else if(issueDescription.text.isEmpty){
             errorMessage.text = "Please enter a brief description for this issue"
             errorMessage.textColor = UIColor.redColor()
             errorMessage.hidden = false
             return false
         }
+        else{
+            let parameters:[String : AnyObject] = [
+                "name": issueName.text,
+                "description": issueDescription.text,
+                "reported": "iOS",
+                "request": "",
+                "picture": "",
+                "location": [
+                    "lng": 30.0,
+                    "lat": 30.0
+                ],
+                "priority": 1,
+                "open": true
+            ]
+            
+            Alamofire.request(Alamofire.Method.POST, "http://culturaltrail.herokuapp.com/issues", parameters: parameters, encoding: .JSON)
+                .responseJSON { (_, _, JSON, _) in
+                    println(JSON)
+            }
+
+        }
+        
         //POST
         for image in images{
             println(image)
