@@ -8,13 +8,13 @@ class CustomTableViewCell : UITableViewCell {
     @IBOutlet var issueDescription: UILabel?
     @IBOutlet var issueLocation: UILabel?
     
-    func loadItem(#title: String, description: String, location: String) {
+    func loadItem(#title: String, description: String, location: String, id: String) {
         issueTitle!.text = title
         issueDescription!.text = description
         issueLocation!.text = location
         
     }
-    func loadItemWithImage(#title: String, description: String, image: UIImage, location: String) {
+    func loadItemWithImage(#title: String, description: String, image: UIImage, location: String, id: String) {
         issueTitle!.text = title
         issueDescription!.text = description
         issueImage!.image = image
@@ -29,9 +29,12 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
     var JSONitems = NSMutableArray()
     var imageArray = NSMutableArray()
     var locationArray = NSMutableArray()
+    var issueIds = NSMutableArray()
+    
     var issueNameToPass = String()
     var issueDescriptionToPass = String()
     var issueLocation = String()
+    var issueId = String()
     
     let locationManager = CLLocationManager()
     
@@ -61,6 +64,7 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
                     }
                 }
                 
+                self.issueIds.addObject(issue["_id"] as! String)
                 self.retrieveImage(issue["picture"] as! String)
                 
                 dispatch_async(dispatch_get_main_queue(),{
@@ -86,7 +90,6 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 let data = NSData(contentsOfURL: url!) //make sure image in this url does exist, otherwise unwrap
                 issueImage.image = UIImage(data: data!)
                 self.imageArray.addObject(issueImage)
-                NSLog("picture in")
             }
             else{
                 self.imageArray.addObject(issueImage)
@@ -111,10 +114,10 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
         //findLocation(issue["location"]["lat"].doubleValue, longi: issue["location"]["lng"].doubleValue)
             issueImage = self.imageArray[indexPath.row] as! UIImageView
             
-            cell.loadItemWithImage(title: issue["name"].string!, description: issue["description"].string!, image: issueImage.image!, location: "hey")
+            cell.loadItemWithImage(title: issue["name"].string!, description: issue["description"].string!, image: issueImage.image!, location: "hey", id: issue["_id"].string!)
         }
         else{
-            cell.loadItem(title: issue["name"].string!, description: issue["description"].string!, location: "hey")
+            cell.loadItem(title: issue["name"].string!, description: issue["description"].string!, location: "hey", id: issue["_id"].string!)
         }
         
         return cell
@@ -132,6 +135,8 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
         issueNameToPass = self.JSONitems[indexPath.row]["name"] as! String
         issueDescriptionToPass = self.JSONitems[indexPath.row]["description"] as! String
         issueLocation = self.locationArray[indexPath.row] as! String
+        issueId = self.issueIds[indexPath.row] as! String
+
         performSegueWithIdentifier("showIssueDetail", sender: self)
 
     }
@@ -148,7 +153,10 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 
                 let userInfo = [
                     "detail":  placemark.subThoroughfare,
-                    "street":   placemark.thoroughfare
+                    "street":   placemark.thoroughfare,
+                    "city":   placemark.subAdministrativeArea,
+                    "postalCode": placemark.postalCode,
+                    "state": placemark.administrativeArea
                 ]
                 
                 locationString = userInfo["detail"]! + userInfo["street"]!
@@ -174,8 +182,15 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
             viewController.issueName = issueNameToPass
             viewController.issueDescription = issueDescriptionToPass
             viewController.issueLocation = issueLocation
+            viewController.issueId = issueId
         }
         
+    }
+    
+    @IBAction func unwindToMainMenu(sender: UIStoryboardSegue)
+    {
+        let sourceViewController: AnyObject = sender.sourceViewController
+        // Pull any data from the view controller which initiated the unwind segue.
     }
     
     

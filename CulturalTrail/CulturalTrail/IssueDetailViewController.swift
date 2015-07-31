@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Alamofire
 
 class IssueDetailViewController: UIViewController {
     
@@ -15,9 +16,14 @@ class IssueDetailViewController: UIViewController {
     @IBOutlet var issueLocationLabel: UILabel!
     @IBOutlet var navigationBar: UINavigationItem!
     
+    var issueId = String()
     var issueName = String()
     var issueDescription = String()
     var issueLocation = String()
+    
+    var editIssueName = String()
+    var editIssueDescription = String()
+    
     override func viewWillAppear(animated: Bool) {
         issueNameLabel.text = issueName
         issueDescriptionLabel.text = issueDescription
@@ -31,8 +37,22 @@ class IssueDetailViewController: UIViewController {
     
     @IBAction func unwindToMainMenu(sender: UIStoryboardSegue)
     {
-        let sourceViewController: AnyObject = sender.sourceViewController
+        let sourceViewController: EditViewController = sender.sourceViewController as! EditViewController
         // Pull any data from the view controller which initiated the unwind segue.
+        
+
     }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?){
+         if (segue.identifier == "showEditView") {
+            // initialize new view controller and cast it as your view controller
+            var viewController = segue.destinationViewController as! EditViewController
+            // your new view controller should have property that will store passed value
+            viewController.issueName = issueName
+            viewController.issueDescription = issueDescription
+            viewController.issueId = issueId
+        }
+    }
+
     
 }

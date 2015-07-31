@@ -7,20 +7,46 @@
 //
 
 import UIKit
+import Alamofire
 
 class EditViewController: UIViewController{
 
+    @IBOutlet var nameTextBox: UITextField!
+    @IBOutlet var descriptionTextView: UITextView!
     
-    @IBAction func cancelButton(segue:UIStoryboardSegue) {
-        // initialize new view controller and cast it as your view controller
-        var viewController = segue.destinationViewController as! IssueDetailViewController
-        // your new view controller should have property that will store passed value
-        //viewController.issueName = issueNameToPass
-        //viewController.issueDescription = issueDescriptionToPass
-        //viewController.issueLocation = issueLocation
-    }
+    var issueId = String()
+    var issueName = String()
+    var issueDescription = String()
     
-    @IBAction func saveButton(segue:UIStoryboardSegue) {
+    override func viewWillAppear(animated: Bool) {
+        nameTextBox.text = issueName
+        descriptionTextView.text = issueDescription
         
+        descriptionTextView.layer.borderColor = UIColor.grayColor().CGColor;
+        descriptionTextView.layer.borderWidth = 0.2;
+        descriptionTextView.layer.cornerRadius = 7.5;
     }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?){
+        
+            // initialize new view controller and cast it as your view controller
+            var viewController = segue.destinationViewController as! IssueDetailViewController
+            // your new view controller should have property that will store passed value
+            viewController.editIssueName = nameTextBox.text
+            viewController.editIssueDescription = descriptionTextView.text
+            //viewController.issueLocation = issueLocation
+        
+        let parameters:[String : AnyObject] = [
+            "_id": issueId,
+            "name": nameTextBox.text,
+            "description": descriptionTextView.text
+        ]
+        
+        Alamofire.request(Alamofire.Method.PUT, "http://culturaltrail.herokuapp.com/issues", parameters: parameters, encoding: .JSON)
+            .responseJSON { (_, _, JSON, _) in
+                println(JSON)
+        }
+    }
+    
+    
 }
