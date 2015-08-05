@@ -91,7 +91,7 @@ class CreateViewController: UIViewController, UIImagePickerControllerDelegate, U
             return true
         }
             let parameters:[String : AnyObject] = [
-                "name": "Issue Name",
+                "name": name,
                 "description": issueDescription.text,
                 "reported": "iOS",
                 "request": "",

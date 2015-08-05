@@ -84,7 +84,6 @@ class WhatsWrongViewController: UIViewController, UITableViewDataSource, UITable
             
             if let index = tableView.indexPathForSelectedRow()?.row {
                 svc.name = "\(items[index]) \(damagedItem)"
-                println("\(items[index]) \(damagedItem)")
             }
         }
     }
