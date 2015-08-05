@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="jNc-aK-WbF">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="jNc-aK-WbF">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -205,33 +205,39 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Issue Description" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B59-Zl-2q2">
-                                <rect key="frame" x="30" y="331" width="533" height="27"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Issue Description" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B59-Zl-2q2">
+                                <rect key="frame" x="34" y="319" width="166" height="24"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Issue Description" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K2n-T9-yLP">
-                                <rect key="frame" x="30" y="398" width="533" height="27"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Issue Description" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K2n-T9-yLP">
+                                <rect key="frame" x="34" y="370" width="212" height="27"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Issue Name" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XrV-9d-TD5">
-                                <rect key="frame" x="30" y="270" width="521" height="65"/>
+                                <rect key="frame" x="34" y="266" width="183" height="38"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hPt-JL-Ekx">
-                                <rect key="frame" x="30" y="100" width="58" height="43"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lkP-Vv-9GF">
+                                <rect key="frame" x="34" y="101" width="240" height="128"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="200" id="dXE-yq-ize"/>
+                                </constraints>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="XrV-9d-TD5" firstAttribute="top" secondItem="hPt-JL-Ekx" secondAttribute="bottom" constant="20" id="Nee-a4-rDD"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="hPt-JL-Ekx" secondAttribute="trailing" constant="10" id="Wq0-Vv-Cxl"/>
-                            <constraint firstItem="hPt-JL-Ekx" firstAttribute="leading" secondItem="o4h-iX-NZV" secondAttribute="leadingMargin" constant="10" id="hfi-2n-A4v"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="lkP-Vv-9GF" secondAttribute="trailing" constant="10" id="BrJ-6x-ilX"/>
+                            <constraint firstItem="lkP-Vv-9GF" firstAttribute="top" secondItem="NTa-oz-yec" secondAttribute="bottom" constant="30" id="Sfz-Bn-GZs"/>
+                            <constraint firstItem="XrV-9d-TD5" firstAttribute="top" secondItem="lkP-Vv-9GF" secondAttribute="bottom" constant="30" id="eeX-XQ-UuD"/>
+                            <constraint firstItem="lkP-Vv-9GF" firstAttribute="leading" secondItem="o4h-iX-NZV" secondAttribute="leadingMargin" constant="10" id="gPf-PR-b3u"/>
+                            <constraint firstItem="B59-Zl-2q2" firstAttribute="top" secondItem="XrV-9d-TD5" secondAttribute="bottom" constant="30" id="hSD-h1-fTV"/>
+                            <constraint firstItem="K2n-T9-yLP" firstAttribute="top" secondItem="B59-Zl-2q2" secondAttribute="bottom" constant="30" id="zhW-cq-CEI"/>
                         </constraints>
                     </view>
                     <toolbarItems/>
@@ -244,14 +250,14 @@
                     </navigationItem>
                     <connections>
                         <outlet property="issueDescriptionLabel" destination="B59-Zl-2q2" id="deh-VE-UG4"/>
-                        <outlet property="issueImageView" destination="hPt-JL-Ekx" id="mzt-IH-Dni"/>
+                        <outlet property="issueImageView" destination="lkP-Vv-9GF" id="qg7-i9-LOD"/>
                         <outlet property="issueLocationLabel" destination="K2n-T9-yLP" id="Lya-ZT-M7d"/>
                         <outlet property="issueNameLabel" destination="XrV-9d-TD5" id="W2y-ju-mKZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4ZL-RX-S18" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2800" y="233"/>
+            <point key="canvasLocation" x="2820" y="274"/>
         </scene>
         <!--What's Damaged?-->
         <scene sceneID="1FY-Nb-Ftz">

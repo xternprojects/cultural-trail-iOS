@@ -15,7 +15,8 @@ class IssueDetailViewController: UIViewController {
     @IBOutlet var issueDescriptionLabel: UILabel!
     @IBOutlet var issueLocationLabel: UILabel!
     @IBOutlet var navigationBar: UINavigationItem!
-    @IBOutlet var issueImageView: UIImageView!
+    //@IBOutlet var issueImageView: UIImageView!
+    @IBOutlet weak var issueImageView: UIImageView!
     
     var issueId = String()
     var issueName = String()
@@ -26,16 +27,12 @@ class IssueDetailViewController: UIViewController {
     var editIssueName = String()
     var editIssueDescription = String()
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewDidLoad() {
+        super.viewDidLoad()
         issueNameLabel.text = issueName
         issueDescriptionLabel.text = issueDescription
         issueLocationLabel.text = issueLocation
         issueImageView.image = issueImage.image
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
     }
     
     @IBAction func unwindToMainMenu(sender: UIStoryboardSegue)
