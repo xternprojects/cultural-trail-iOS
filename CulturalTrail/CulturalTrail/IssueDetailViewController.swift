@@ -15,11 +15,13 @@ class IssueDetailViewController: UIViewController {
     @IBOutlet var issueDescriptionLabel: UILabel!
     @IBOutlet var issueLocationLabel: UILabel!
     @IBOutlet var navigationBar: UINavigationItem!
+    @IBOutlet var issueImageView: UIImageView!
     
     var issueId = String()
     var issueName = String()
     var issueDescription = String()
     var issueLocation = String()
+    var issueImage = UIImageView()
     
     var editIssueName = String()
     var editIssueDescription = String()
@@ -28,6 +30,7 @@ class IssueDetailViewController: UIViewController {
         issueNameLabel.text = issueName
         issueDescriptionLabel.text = issueDescription
         issueLocationLabel.text = issueLocation
+        issueImageView.image = issueImage.image
     }
     
     override func viewDidLoad() {

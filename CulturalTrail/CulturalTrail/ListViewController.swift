@@ -35,6 +35,7 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
     var issueDescriptionToPass = String()
     var issueLocation = String()
     var issueId = String()
+    var issueImage = UIImageView()
     
     let locationManager = CLLocationManager()
     
@@ -136,7 +137,7 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
         issueDescriptionToPass = self.JSONitems[indexPath.row]["description"] as! String
         issueLocation = self.locationArray[indexPath.row] as! String
         issueId = self.issueIds[indexPath.row] as! String
-
+        issueImage = self.imageArray[indexPath.row] as! UIImageView
         performSegueWithIdentifier("showIssueDetail", sender: self)
 
     }
@@ -183,6 +184,7 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
             viewController.issueDescription = issueDescriptionToPass
             viewController.issueLocation = issueLocation
             viewController.issueId = issueId
+            viewController.issueImage = issueImage
         }
         
     }
