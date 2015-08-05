@@ -20,9 +20,10 @@
 		8CE303511B350CB90021E71A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8CE303501B350CB90021E71A /* Images.xcassets */; };
 		8CE303541B350CB90021E71A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8CE303521B350CB90021E71A /* LaunchScreen.xib */; };
 		8CE303601B350CB90021E71A /* CulturalTrailTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CE3035F1B350CB90021E71A /* CulturalTrailTests.swift */; };
+		9D2817E91B6F09EC001EA8F9 /* WhatsDamagedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D2817E81B6F09EC001EA8F9 /* WhatsDamagedViewController.swift */; };
+		9D2817EB1B6F1719001EA8F9 /* WhatsWrongViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D2817EA1B6F1719001EA8F9 /* WhatsWrongViewController.swift */; };
 		9D6A27B11B4CDA37004609D8 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D6A27B01B4CDA37004609D8 /* ListViewController.swift */; };
 		9D6A27B31B4CEE9A004609D8 /* CreateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D6A27B21B4CEE9A004609D8 /* CreateViewController.swift */; };
-		9D6A27B51B4CF070004609D8 /* CustomSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D6A27B41B4CF070004609D8 /* CustomSegue.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,9 +55,10 @@
 		8CE303591B350CB90021E71A /* CulturalTrailTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CulturalTrailTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8CE3035E1B350CB90021E71A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8CE3035F1B350CB90021E71A /* CulturalTrailTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CulturalTrailTests.swift; sourceTree = "<group>"; };
+		9D2817E81B6F09EC001EA8F9 /* WhatsDamagedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WhatsDamagedViewController.swift; sourceTree = "<group>"; };
+		9D2817EA1B6F1719001EA8F9 /* WhatsWrongViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WhatsWrongViewController.swift; sourceTree = "<group>"; };
 		9D6A27B01B4CDA37004609D8 /* ListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
 		9D6A27B21B4CEE9A004609D8 /* CreateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateViewController.swift; sourceTree = "<group>"; };
-		9D6A27B41B4CF070004609D8 /* CustomSegue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomSegue.swift; sourceTree = "<group>"; };
 		A40BDA9639B431EB30114A3C /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -133,8 +135,9 @@
 				9D6A27B21B4CEE9A004609D8 /* CreateViewController.swift */,
 				24D37F651B54B09B00C9FCD0 /* IssueDetailViewController.swift */,
 				24DCDB781B68701500DDAC70 /* EditViewController.swift */,
-				9D6A27B41B4CF070004609D8 /* CustomSegue.swift */,
 				241D4F131B573E5800D4CCB6 /* CustomTableViewCell.xib */,
+				9D2817E81B6F09EC001EA8F9 /* WhatsDamagedViewController.swift */,
+				9D2817EA1B6F1719001EA8F9 /* WhatsWrongViewController.swift */,
 			);
 			path = CulturalTrail;
 			sourceTree = "<group>";
@@ -318,12 +321,13 @@
 			files = (
 				24D37F681B54B2F700C9FCD0 /* NavigationBaseController.swift in Sources */,
 				24C86AB51B435D9A00C72CA1 /* SwiftyJSON.swift in Sources */,
+				9D2817EB1B6F1719001EA8F9 /* WhatsWrongViewController.swift in Sources */,
 				9D6A27B31B4CEE9A004609D8 /* CreateViewController.swift in Sources */,
 				24C86AB71B435DC600C72CA1 /* RestApiManager.swift in Sources */,
 				24D37F661B54B09B00C9FCD0 /* IssueDetailViewController.swift in Sources */,
-				9D6A27B51B4CF070004609D8 /* CustomSegue.swift in Sources */,
 				9D6A27B11B4CDA37004609D8 /* ListViewController.swift in Sources */,
 				8CE3034A1B350CB90021E71A /* AppDelegate.swift in Sources */,
+				9D2817E91B6F09EC001EA8F9 /* WhatsDamagedViewController.swift in Sources */,
 				24DCDB791B68701500DDAC70 /* EditViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
