@@ -35,6 +35,9 @@ class EditViewController: UIViewController{
             viewController.editIssueName = nameTextBox.text
             viewController.editIssueDescription = descriptionTextView.text
             //viewController.issueLocation = issueLocation
+            viewController.issueName = nameTextBox.text
+            viewController.issueDescription = nameTextBox.text
+
         
         let parameters:[String : AnyObject] = [
             "_id": issueId,
