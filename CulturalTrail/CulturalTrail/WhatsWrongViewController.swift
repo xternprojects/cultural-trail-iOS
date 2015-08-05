@@ -78,4 +78,15 @@ class WhatsWrongViewController: UIViewController, UITableViewDataSource, UITable
         
     }
     
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
+        if (segue.identifier == "changeThis") {
+            var svc = segue.destinationViewController as! CreateViewController;
+            
+            if let index = tableView.indexPathForSelectedRow()?.row {
+                svc.name = "\(items[index]) \(damagedItem)"
+                println("\(items[index]) \(damagedItem)")
+            }
+        }
+    }
+    
 }

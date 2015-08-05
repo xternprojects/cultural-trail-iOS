@@ -11,11 +11,13 @@ import Alamofire
 
 class CreateViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
+    @IBOutlet weak var issueTitle: UIButton!
     @IBOutlet weak var issueDescription: UITextField!
     @IBOutlet weak var issuePriority: UISegmentedControl!
   
     @IBOutlet weak var imageView: UIImageView!
     
+    var name = String()
     var images = [UIImage]()
     var priority = 0
     
@@ -23,6 +25,10 @@ class CreateViewController: UIViewController, UIImagePickerControllerDelegate, U
 
     
     override func viewDidLoad() {
+        if(name.isEmpty){
+            name = "Issue Title"
+        }
+        issueTitle.setTitle(name, forState: .Normal)
         issuePriority.tintColor = UIColor.orangeColor()
         let descriptionBorder = CALayer()
         let descriptionWidth = CGFloat(1.0)

@@ -186,6 +186,7 @@
                         <outlet property="imageView" destination="3kM-ES-KE6" id="oOo-wG-fdZ"/>
                         <outlet property="issueDescription" destination="SCy-Ms-QWe" id="9Ny-ga-LQJ"/>
                         <outlet property="issuePriority" destination="NXE-Qn-b4T" id="THP-Q6-75O"/>
+                        <outlet property="issueTitle" destination="h18-4n-19h" id="DLp-lJ-25n"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="L7C-cm-c5x" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -319,6 +320,9 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="Lbo-NJ-9E3" kind="show" identifier="changeThis" id="T4j-T4-otn"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -417,4 +421,7 @@
             <point key="canvasLocation" x="1141" y="233"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="T4j-T4-otn"/>
+    </inferredMetricsTieBreakers>
 </document>
