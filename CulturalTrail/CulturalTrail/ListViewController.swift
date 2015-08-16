@@ -86,13 +86,13 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
             var issueImage = UIImageView();
             let url = NSURL(string: urlString)
-            if(url != nil)
+            if(urlString != "")
             {
                 let data = NSData(contentsOfURL: url!) //make sure image in this url does exist, otherwise unwrap
                 issueImage.image = UIImage(data: data!)
                 self.imageArray.addObject(issueImage)
             }
-            else{
+            else {
                 self.imageArray.addObject(issueImage)
             }
         
