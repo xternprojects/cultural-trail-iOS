@@ -110,15 +110,15 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
 
         var issueImage = UIImageView();
         let url = NSURL(string: picURL!)
-        if(url != nil)
+        if(picURL != "")
         {
         //findLocation(issue["location"]["lat"].doubleValue, longi: issue["location"]["lng"].doubleValue)
             issueImage = self.imageArray[indexPath.row] as! UIImageView
             
-            cell.loadItemWithImage(title: issue["name"].string!, description: issue["description"].string!, image: issueImage.image!, location: "hey", id: issue["_id"].string!)
+            cell.loadItemWithImage(title: issue["name"].string!, description: issue["description"].string!, image: issueImage.image!, location: locationArray[indexPath.row] as! String, id: issue["_id"].string!)
         }
         else{
-            cell.loadItem(title: issue["name"].string!, description: issue["description"].string!, location: "hey", id: issue["_id"].string!)
+            cell.loadItem(title: issue["name"].string!, description: issue["description"].string!, location: locationArray[indexPath.row] as! String, id: issue["_id"].string!)
         }
         
         return cell
@@ -163,10 +163,11 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 locationString = userInfo["detail"]! + userInfo["street"]!
                 
                 println("Location:  \(locationString)")
-                println(self.locationArray)
                 
             }
             self.locationArray.addObject(locationString)
+            println(self.locationArray)
+
         })
         
         return locationString
